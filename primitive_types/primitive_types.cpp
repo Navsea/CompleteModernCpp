@@ -72,5 +72,57 @@ int main() {
     cout << "The variable var_float contains: " << var_float << " is of datatype: " << typeid(var_float).name() << endl;
 
 
+    cout << "Variable initialization" << endl;
+    // Uniform initialization is now possible since C++14, using the {}
+    // primitive types are not initialized, objects are
+    int i1; // uninitialized, can contain anything
+    int i2 = 0; // copy initialization, should be avoided (from the moment you use assignment operator, because you first create the right side and then copy it to the left side)
+    int i3(5); // called direct initialization
+
+    string s; // this is an object, so its initialized to empty string
+
+    char a1[8]; // uninitialized, can contain anything
+    char a2[8] = {'\0'}; // initialized with null terminating character, copy initialization
+    char a3[8] = {'a', 'b', 'c', 'd'}; // aggregate initialization
+
+    cout << "i1: " << i1 << " i2: " << i2 << " i3: " <<  i3 << " s: " << s << endl;
+    cout << "a1: " << a1 << " a2: " << a2 << " a3: " <<  a3 << endl;
+
+    // uniform initialization
+    int b1{}; // value initialization
+    int b2(); // this is declaring a function b, called most vexing parse IT DOES NOT INITIALIZE only when you supply something between parenthesis
+    int b3{5}; // Direction intialization
+    char b4{};
+    char b5[15]{"DirectInit"};  // Object is created on the heap, so its initialized
+
+    cout << "b1: " << b1 << " b2 " << b2 << " b3 " << b3 << " b4 " << b4 << " b5 " << b5 << endl;
+
+    int *p1 = new int; // uninitialized variable created on the heap
+    int *p2 = new int{}; // initiliazed
+    char *p3 = new char[8]{};
+    //char *p3 = new char[8]{"Hi"}; // does not seem to work
+    int *p4 = new int[8]{5,4,3,2,1}; // you should be able to now create a variable on the heap and immediately give it a value
+
+    cout << "p1: " << *p1 << " p2: " << *p2 << " p3: " << *p3 << " p4: " << *p4 << " p4++: " << *(p4+1) <<endl;
+
+    // for primitive types you can choose between assigment operator or uniform initialization, but for user defined types, you need to use uniform initialization
+    /*
+    1. Value initialization => T obj{};
+    2. Direction initialization => T obj{b}
+    3. Copy initiliazation => T obj = v; 
+
+    Advantages of uniform intialization
+    1. Forces initialization
+    2. Direction initiliazation for array types
+    3. It prevents narrowing conversion
+    4. Uniform syntax
+    */
+
+    // example 
+    // It prevents narrowing conversion (run build task to see warning)
+    float f{};
+    int i{f};
+
     return 0;
 }
+
