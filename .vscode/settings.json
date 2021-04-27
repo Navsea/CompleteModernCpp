@@ -54,6 +54,8 @@
         "cfenv": "cpp",
         "cinttypes": "cpp",
         "climits": "cpp",
-        "cfloat": "cpp"
+        "cfloat": "cpp",
+        "numeric": "cpp",
+        "random": "cpp"
     }
 }

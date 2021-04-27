@@ -43,6 +43,7 @@ differences c functions and new:
 // these libraries are part of the c library, not cpp, thats why you need the .h
 #include <stdio.h>
 #include <stdlib.h> // where memory allocation functions are located
+#include <string.h>
 #include <iostream>
 
 void new_f()
@@ -51,7 +52,7 @@ void new_f()
     *p = 6;
     std::cout << "p contains: " << *p << std::endl;
     delete p;       // becomes dangling pointer (pointer to memory that has not been assigned)
-    p = nullptr;    // now uninitialized ptr
+    p = nullptr;    // now uninitialized ptr, strictly not necessary because the variable will be destroyed anyway when it exits function scope
 }
 
 void new_array()
@@ -67,6 +68,34 @@ void new_array()
         std::cout << "p[" << i << "] = " << p[i] << std::endl;
     }
     delete[] p;
+}
+
+void strings()
+{
+    // Note that we only used three characters, but you need to add one element for the string null terminating character 
+    char *p_str = new char[4];
+    strcpy(p_str, "C++");
+    std::cout << p_str << std::endl;
+}
+
+void 2d()
+{
+    int *p1 = new int[3];
+    int *p2 = new int[3];
+    // allocate memory for a one D array of integer pointers
+    int **pData = new int *[2];
+    pData[0] = p1;
+    pData[1] = p2;
+
+    // pData[0] returns p1 and [1] returns second value of p1
+    pData[0][1] = 2;
+
+    // !!!!!!! free memory in the same order you allocated it !!!!!!!!
+    delete[] p1; // same as delete[] pData[0]
+    delete[] p2; // same as delete[] pData[1]
+    delete[] pData;
+
+    // note that the nr of new operators = nr of delete operators
 }
 
 int main()
@@ -111,6 +140,19 @@ int main()
     delete[] p_array;
 
     new_array();
+
+    // directly initialize values 
+    int *p_array2 = new int[5]{1,2,3,4,5};
+
+    // dont forget to allocate space for the null terminating character
+    strings();
+
+    // allocating memory for 2D array
+    // not that in memory its just a single 1D array
+    int data[2][3] = {
+        1, 2, 3,
+        4, 5, 6
+    }
 
     return 0;
 }
