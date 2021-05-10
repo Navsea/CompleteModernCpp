@@ -56,6 +56,10 @@
         "climits": "cpp",
         "cfloat": "cpp",
         "numeric": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "list": "cpp",
+        "set": "cpp",
+        "codecvt": "cpp",
+        "filesystem": "cpp"
     }
 }

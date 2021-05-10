@@ -5,7 +5,7 @@
         "type": "shell",
         "label": "g++ build active file",
         "command": "/usr/bin/g++",
-        "args": ["-std=c++14", "-fno-elide-constructors", "-g", "${fileDirname}/*.cpp", "-o", "${fileDirname}/${fileBasenameNoExtension}"], // disabling optimizations to learn better
+        "args": ["-std=c++17", "-fno-elide-constructors", "-g", "${fileDirname}/*.cpp", "-lstdc++fs", "-o", "${fileDirname}/${fileBasenameNoExtension}"], // disabling optimizations to learn better
         "options": {
           "cwd": "/usr/bin"
         },

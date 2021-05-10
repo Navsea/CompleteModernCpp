@@ -3,6 +3,12 @@
 - these expressions are possibly evaluated at compile time, so may increase performance of code
 - can be applied to variable declarations or functions
 - IN CPP 11: should only contain one line of code, the return statement! this is allowed from Cpp14 onwards
+- All constant expressions are implicitly inline, so just like inline, you need to define them in the header file!
+
+const vs constexpr
+all constexpr are cst but not all cst are constexpr (const can be defined at runtime)
+const is used to indicate that the value will not change!
+constexpr is used for expressions that need to be executed at compile time
 */
 #include <iostream>
 using namespace std;
